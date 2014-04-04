@@ -58,9 +58,12 @@ for turn in range(20):
 	guess_col = int(raw_input("Guess Col: "))-1
 	guess = ''.join(str(guess_row)+str(guess_col))
 	if guess in new_board:
-		board[guess_row][guess_col] = "*"
 		sunk += 1
-		if turn==19:
+		if(board[guess_row][guess_col] == "*"):
+			print "You guessed that one already."
+			if turn==19:
+				print "Game Over"
+		elif turn==19:
 			print "Game Over"
 			break
 		elif sunk == 10:
@@ -68,6 +71,7 @@ for turn in range(20):
 			break
 		else:
 			print "Sunk {0}, {1} to go!".format(sunk, 10-sunk)
+			board[guess_row][guess_col] = "*"
 				
 	else:
 		if (guess_row < 0 or guess_row > 4) or (guess_col < 0 or guess_col > 4):
